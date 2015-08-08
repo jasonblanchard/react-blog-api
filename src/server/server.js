@@ -12,8 +12,9 @@ app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
 app.get('/*', (req, res) => {
-  Router.run(routes, req.url, (Handler) => {
-    let content = React.renderToString(<Handler />);
+  Router.run(routes, req.url, (Handler, state) => {
+    let params = state.params;
+    let content = React.renderToString(<Handler params={params} />);
     res.render('index', { content: content });
   });
 });
