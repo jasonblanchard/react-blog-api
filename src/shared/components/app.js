@@ -11,6 +11,7 @@ export default class App extends React.Component {
         <ul>
           <li><Link to='about'>About</Link></li>
           <li><Link to='sayHello'>Say Hello</Link></li>
+          <li><Link to='blog'>Blog</Link></li>
         </ul>
         <RouteHandler {...this.props} />
 
