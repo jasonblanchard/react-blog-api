@@ -1,7 +1,8 @@
 import express from 'express';
 import exphbs from 'express-handlebars';
 import React from 'react';
-import App from '../shared/components/app';
+import Router from 'react-router';
+import routes from '../shared/routes';
 
 const app = express();
 
@@ -11,8 +12,10 @@ app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
 app.get('/*', (req, res) => {
-  let content = React.renderToString(<App/>);
-  res.render('index', { content: content });
+  Router.run(routes, req.url, (Handler) => {
+    let content = React.renderToString(<Handler />);
+    res.render('index', { content: content });
+  });
 });
 
 app.listen(8080);
