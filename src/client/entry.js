@@ -1,8 +1,8 @@
 import React from 'react';
-import Router from 'react-router';
 import routes from '../shared/routes';
+import router from '../shared/router';
 
-Router.run(routes, Router.HistoryLocation, (Handler, state) => {
+router.run((Handler, state) => {
   let params = state.params;
-  React.render(<Handler params={params} />, document.getElementById('app'));
+  React.render(<Handler params={params} router={router} />, document.getElementById('app'));
 });

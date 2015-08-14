@@ -14,6 +14,7 @@ export default class NewPost extends React.Component {
 
   handleSubmit() {
     this.props.flux.getActions('posts').createPost();
+    this.props.router.transitionTo('blog');
   }
   
   render() {
