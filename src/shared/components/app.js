@@ -13,7 +13,9 @@ export default class App extends React.Component {
           <li><Link to='sayHello'>Say Hello</Link></li>
           <li><Link to='blog'>Blog</Link></li>
         </ul>
-        <RouteHandler {...this.props} />
+        <div aria-live="polite" className='main-content'>
+          <RouteHandler {...this.props} role="alert" aria-live="polite" />
+        </div>
 
       </div>
     );

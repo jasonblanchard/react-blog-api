@@ -47,8 +47,6 @@ export default class PostStore extends Store {
       newTitle: '',
       newBody: ''
     });
-
-    console.log(newPost);
   }
 
   handleUpdateNewTitle(title) {
