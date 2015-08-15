@@ -3,8 +3,6 @@ import exphbs from 'express-handlebars';
 import React from 'react';
 import Router from 'react-router';
 import routes from '../shared/routes';
-import a11y from 'react-a11y';
-a11y(React);
 
 const app = express();
 
