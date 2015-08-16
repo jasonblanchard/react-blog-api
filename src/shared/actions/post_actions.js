@@ -28,4 +28,8 @@ export default class PostActions extends Actions {
     return body;
   }
 
+  hydratePosts(posts) {
+    return posts;
+  }
+
 }

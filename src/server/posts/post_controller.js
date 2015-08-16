@@ -9,7 +9,6 @@ export default {
 
   create(req, res) {
     let postParams = req.body;
-    console.log(req.body);
     postModel.save(postParams).then((post) => {
       res.json(post);
     });

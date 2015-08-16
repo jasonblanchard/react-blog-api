@@ -9,20 +9,25 @@ export default class PostStore extends Store {
     this.register(postActionIds.updateNewTitle, this.handleUpdateNewTitle);
     this.register(postActionIds.updateNewBody, this.handleUpdateNewBody);
     this.registerAsync(postActionIds.getPostsFromServer, this.handleStartFetchingPosts, this.handleUpdateAllPosts, null);
+    this.register(postActionIds.hydratePosts, this.handleUpdateAllPosts);
 
     this.state = {
       posts: [],
       newTitle: '',
       newBody: '',
-      loading: true
+      loading: false
     };
 
     this.nextId = this.state.posts.length + 1;
 
   }
 
-  incrementId() {
-    return this.nextId += 1;
+  static serialize(state) {
+    return JSON.stringify(state);
+  }
+
+  static deserialize(state) {
+    return JSON.parse(state);
   }
 
   handleStartFetchingPosts() {
