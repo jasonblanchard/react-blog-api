@@ -13,7 +13,10 @@ export default class NewPost extends React.Component {
   }
 
   handleSubmit() {
-    this.props.flux.getActions('posts').createPost();
+    this.props.flux.getActions('posts').createPost({
+      title: this.props.newTitle,
+      body: this.props.newBody
+    });
     this.props.router.transitionTo('blog');
   }
   

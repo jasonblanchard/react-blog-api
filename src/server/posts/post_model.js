@@ -11,8 +11,23 @@ var postFixtures = [
   },
 ];
 
+function incrementId() {
+  return postFixtures.length + 1;
+}
+
 export default {
   all() {
     return Promise.resolve(postFixtures);
+  },
+
+  save(postParams) {
+    let newPost = {};
+    newPost.title = postParams.title;
+    newPost.body = postParams.body;
+    newPost.id = incrementId();
+
+    postFixtures = postFixtures.concat([newPost]);
+
+    return Promise.resolve(newPost);
   }
 }

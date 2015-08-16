@@ -5,25 +5,16 @@ export default class PostStore extends Store {
     super();
 
     const postActionIds = flux.getActionIds('posts');
-    this.register(postActionIds.createPost, this.handleNewPost);
+    this.registerAsync(postActionIds.createPost, null, this.handleNewPost);
     this.register(postActionIds.updateNewTitle, this.handleUpdateNewTitle);
     this.register(postActionIds.updateNewBody, this.handleUpdateNewBody);
+    this.registerAsync(postActionIds.getPostsFromServer, this.handleStartFetchingPosts, this.handleUpdateAllPosts, null);
 
     this.state = {
-      posts: [
-        {
-          id: 1,
-          title: 'testing',
-          body: "I'm the first post"
-        },
-        {
-          id: 2,
-          title: 'Hello',
-          body: "I'm the second post"
-        }
-      ],
+      posts: [],
       newTitle: '',
-      newBody: ''
+      newBody: '',
+      loading: true
     };
 
     this.nextId = this.state.posts.length + 1;
@@ -34,14 +25,20 @@ export default class PostStore extends Store {
     return this.nextId += 1;
   }
 
-  handleNewPost() {
+  handleStartFetchingPosts() {
+    this.setState({
+      loading: true
+    });
+  }
 
-    let newPost = {
-      title: this.state.newTitle,
-      body: this.state.newBody,
-      id: this.incrementId()
-    }
+  handleUpdateAllPosts(posts) {
+    this.setState({
+      posts: posts,
+      loading: false
+    });
+  }
 
+  handleNewPost(newPost) {
     this.setState({
       posts: this.state.posts.concat([newPost]),
       newTitle: '',

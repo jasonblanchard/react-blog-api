@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class BlogIndex extends React.Component {
 
@@ -12,8 +13,18 @@ export default class BlogIndex extends React.Component {
   }
 
   render() {
+
+    let showLoader = () => {
+      if (this.props.loading === true) {
+        return (<span>Loading...</span>);
+      }
+    }
+
     return (
       <div>
+      <Link to='newPost'>New Post Form</Link>
+      <br />
+      {showLoader()}
       {this.props.posts.map(this.renderPost)}
       </div>
     );
