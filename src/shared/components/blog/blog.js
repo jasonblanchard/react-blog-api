@@ -4,7 +4,7 @@ import FluxComponent from 'flummox/component';
 import {RouteHandler } from 'react-router';
 
 export default class Blog extends React.Component {
-
+  
   render() {
     return (
       <div>
