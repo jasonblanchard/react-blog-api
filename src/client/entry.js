@@ -1,12 +1,15 @@
 import React from 'react';
-import routes from '../shared/routes';
 import router from '../shared/router';
 import Flux from '../shared/flux';
 
 const flux = new Flux();
+
+// Get state that was serialized to the DOM server-side
 const initialState = document.getElementById('init-data').value;
-//flux.getActions('posts').getPostsFromServer();
 flux.deserialize(initialState);
+
+// Don't need this because we're populating store from the DOM
+//flux.getActions('posts').getPostsFromServer();
 
 router.run((Handler, state) => {
   let params = state.params;
