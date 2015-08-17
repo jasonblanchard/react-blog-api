@@ -26,7 +26,7 @@ app.get('/*', (req, res) => {
 
   Router.run(sharedRoutes, req.url, (Handler, state) => {
 
-    postModel.all().then((posts) => {
+    postModel.fetchAll().then((posts) => {
       try {
         flux.getActions('posts').hydratePosts(posts);
         let initialState = flux.serialize();

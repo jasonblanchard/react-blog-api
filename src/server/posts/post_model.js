@@ -16,7 +16,7 @@ function incrementId() {
 }
 
 export default {
-  all() {
+  fetchAll() {
     return Promise.resolve(postFixtures);
   },
 
